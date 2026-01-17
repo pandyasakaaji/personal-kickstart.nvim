@@ -441,8 +441,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
+          winblend = 0,
+          previewer = true,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
 
@@ -487,7 +487,16 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = {
+          notification = {
+            window = {
+              winblend = 0, -- Membuat window fidget transparan (0 = full transparan)
+            },
+          },
+        },
+      },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -886,6 +895,7 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        transparent = true,
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
@@ -1042,3 +1052,38 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Transparent
+local transparent_groups = {
+  -- Telescope
+  'TelescopeNormal',
+  'TelescopeBorder',
+  'TelescopePromptNormal',
+  'TelescopePromptBorder',
+  'TelescopeResultsNormal',
+  'TelescopeResultsBorder',
+  'TelescopePreviewNormal',
+  'TelescopePreviewBorder',
+
+  -- Neo-tree
+  'NeoTreeNormal',
+  'NeoTreeNormalNC',
+  'NeoTreeVertSplit',
+  'NeoTreeWinSeparator',
+  'NeoTreeEndOfBuffer',
+  'NeoTreeFloatNormal',
+  'NeoTreeFloatBorder',
+
+  -- Fidget (LSP Status)
+  'FidgetNormal',
+  'FidgetTask',
+
+  -- Lualine
+  'StatusLine',
+  'StatusLineNC',
+  'WinSeparator', -- Opsional: agar garis pemisah antar window juga transparan
+}
+
+for _, group in ipairs(transparent_groups) do
+  vim.api.nvim_set_hl(0, group, { bg = 'none' })
+end
