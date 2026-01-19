@@ -15,7 +15,7 @@ return {
       opts = {
         notification = {
           window = {
-            winblend = 0, -- Membuat window fidget transparan (0 = full transparan)
+            winblend = 0,
           },
         },
       },
@@ -213,7 +213,7 @@ return {
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
-      -- ts_ls = {},
+      ts_ls = {},
       --
 
       lua_ls = {
