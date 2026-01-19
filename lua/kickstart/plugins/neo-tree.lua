@@ -15,6 +15,8 @@ return {
   },
   opts = {
     filesystem = {
+      follow_current_file = { enabled = true },
+      hijack_netrw_behavior = 'open_default',
       window = {
         mappings = {
           ['\\'] = 'close_window',
