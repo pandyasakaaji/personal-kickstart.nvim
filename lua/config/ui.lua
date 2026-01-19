@@ -26,8 +26,24 @@ local transparent_groups = {
   'StatusLine',
   'StatusLineNC',
   'WinSeparator',
+
+  -- Notify
+  'NormalFloat',
+  'NotifyBackground',
+  'NotifyERRORBody',
+  'NotifyWARNBody',
+  'NotifyINFOBody',
+  'NotifyDEBUGBody',
+  'NotifyTRACEBody',
+  'NoiceCmdlinePopup',
+  'NoiceCmdlinePopupBorder',
+  'NoicePopupmenu',
+  'NoicePopupmenuBorder',
+  'Pmenu',
+  'FloatBorder',
+  'NormalFloat',
 }
 
 for _, group in ipairs(transparent_groups) do
-  vim.api.nvim_set_hl(0, group, { bg = 'none' })
+  vim.api.nvim_set_hl(0, group, { bg = 'none', ctermbg = 'none', force = true })
 end

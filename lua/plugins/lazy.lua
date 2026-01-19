@@ -25,6 +25,8 @@ require('lazy').setup({
   require 'plugins.mini',
   require 'plugins.statusline',
   require 'plugins.treesitter',
+  require 'plugins.lspsaga',
+  require 'plugins.notify',
 
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
